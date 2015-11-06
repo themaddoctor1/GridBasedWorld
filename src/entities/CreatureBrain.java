@@ -11,7 +11,7 @@ package entities;
  *
  * @author Christopher Hittner
  */
-public class CreatureBrain {
+public abstract class CreatureBrain {
     private Creature delegator;
     
     /**
@@ -29,5 +29,11 @@ public class CreatureBrain {
     public final Creature getDelegator() {
         return delegator;
     }
+    
+    /**
+     * Performs necessary actions.
+     * @param params What the CreatureBrain is given to work with.
+     */
+    public abstract void act(Object... params);
     
 }
