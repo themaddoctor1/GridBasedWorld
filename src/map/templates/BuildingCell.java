@@ -1,12 +1,15 @@
-/*
+/**
  * BuildingCell.java
+ * 
+ * Christopher Hittner (c) 2015
  */
 package map.templates;
 
 import map.MapLocation;
 
 /**
- *
+ * Describes a standard piece of a building.
+ * 
  * @author Christopher Hittner
  */
 public class BuildingCell extends MapLocation {

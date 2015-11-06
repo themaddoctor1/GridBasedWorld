@@ -7,7 +7,7 @@ package map;
 
 /**
  *
- * @author Christopher
+ * @author Christopher Hittner
  */
 public abstract class MapLocation extends Cell implements Describable {
     
