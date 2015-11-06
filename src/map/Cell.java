@@ -5,6 +5,8 @@
  */
 package map;
 
+import map.cellcontent.CellContentManager;
+
 /**
  * Represents a position within the game.
  * @author Christopher
@@ -15,6 +17,9 @@ public abstract class Cell {
      * Order of indexes is ENWSUD (East-North-West-South-Up-Down)
      */
     protected boolean[][][] open = new boolean[3][3][3];
+    
+    //Manages the contents of this Cell.
+    protected CellContentManager contents = null;
     
     /**
      * Creates a Cell that anything can enter.
@@ -53,6 +58,21 @@ public abstract class Cell {
      */
     public boolean[][][] getOpenings() {
         return open.clone();
+    }
+    
+    /**
+     * Gets the current CellContentManager for this Cell.
+     * @return The CellContentManager.
+     */
+    public CellContentManager getContentManager() {
+        return contents;
+    }
+    /**
+     * Sets a new CellContentManager for this Cell.
+     * @param manager The new CellContentManager.
+     */
+    public void setContentManager(CellContentManager manager) {
+        contents = manager;
     }
     
 }
