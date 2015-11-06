@@ -5,6 +5,7 @@
  */
 package entities;
 
+import items.Inventory;
 import map.Cell;
 import map.MapLocation;
 
@@ -17,7 +18,9 @@ import map.MapLocation;
  */
 public class Creature extends Entity {
     
-    CreatureBrain brain = null;
+    protected CreatureBrain brain = null;
+    protected Inventory inventory = new Inventory();
+    
     
     /**
      * Creates a Creature (has no brain by default).
@@ -31,16 +34,16 @@ public class Creature extends Entity {
      * Sets a new brain.
      * @param cb The brain.
      */
-    public final void setObserver(CreatureBrain cb) {
+    public final void setBrain(CreatureBrain cb) {
         brain = cb;
-        cb.setDelegator(this);
+        cb.setCreature(this);
     }
     
     /**
      * Gets the current CreatureBrain and returns it.
      * @return The delegate.
      */
-    public final CreatureBrain getObserver() {
+    public final CreatureBrain getBrain() {
         return brain;
     }
     
