@@ -15,16 +15,16 @@ public abstract class CreatureBrain {
     private Creature delegator;
     
     /**
-     * Sets a new observer.
-     * @param c The new owner.
+     * Sets a new CreatureBrain to delegate.
+     * @param c The new delegator.
      */
     public final void setDelegator(Creature c) {
         delegator = c;
     }
     
     /**
-     * Gets the current listener.
-     * @return
+     * Gets the current Creature that this CreatureBrain is assisting..
+     * @return The delegator.
      */
     public final Creature getDelegator() {
         return delegator;
