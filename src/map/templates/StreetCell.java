@@ -12,12 +12,12 @@ import map.MapLocation;
  * 
  * @author Christopher Hittner
  */
-public class Street extends MapLocation {
+public class StreetCell extends MapLocation {
     
     /**
      * Creates a Street where movement is allowed in all eight directions.
      */
-    public Street() {
+    public StreetCell() {
         //Initially permits maximum permittivity
         super();
         
@@ -29,13 +29,18 @@ public class Street extends MapLocation {
             //One layer above
             getOpenings()[i%3][i/3][2] = false;
         }
+        
+        //Limits movement to strictly NESW.
+        for(int i = 0; i < 4; i++)
+            getOpenings()[(i%2)*2][(i/2)*2][1] = false;
+        
     }
     
     /**
      * Creates a Street with a predetermined permittivity.
      * @param XY_permittivity The permittivity on the XY plane.
      */
-    public Street(boolean[][] XY_permittivity) {
+    public StreetCell(boolean[][] XY_permittivity) {
         //Makes sure that only the Z-coordinate of this item can be accessed
         this();
         

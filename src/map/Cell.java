@@ -51,8 +51,21 @@ public abstract class Cell {
      * 
      * @return
      */
-    public boolean[][][] getOpenings() {
+    public final boolean[][][] getOpenings() {
         return open.clone();
+    }
+    
+    /**
+     * Sets the opened/closed state of one of the 27 positions.
+     * 
+     * @condition  -1 <= x,y,z <= 1
+     * @param x The x coordinate relative to the Cell.
+     * @param y The y coordinate relative to the Cell.
+     * @param z The z coordinate relative to the Cell.
+     * @param opened Whether or not the opening should be permeable.
+     */
+    public final void setOpening(int x, int y, int z, boolean opened) {
+        open[x+1][y+1][z+1] = opened;
     }
     
 }

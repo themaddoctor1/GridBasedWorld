@@ -37,6 +37,38 @@ public class BuildingCell extends MapLocation {
         super(permittivity);
     }
     
+    /**
+     * Creates a custom BuildingCell layout.
+     * 
+     * @param type The type of BuildingCell.
+     * @param permittivity The permittivity on the current level.
+     */
+    public BuildingCell(String type, boolean[][] permittivity) {
+        
+        this();
+        
+        for(int i = 0; i < 9; i++)
+            setOpening((i%3)-1, (i/3)-1, 0, permittivity[i%3][i/3]);
+        
+        switch (type) {
+            //Bottom floor should not have a bottom opening.
+            case "bottom_floor":
+                setOpening(0, 0, -1, false);
+                break;
+            //One can't simply go up when there is nothing above...
+            case "top_floor":
+                setOpening(0, 0, 1, false);
+                break;
+            case "no_vertical":
+                setOpening(0, 0, -1, false);
+                setOpening(0, 0, 1, false);
+                break;
+                
+        }
+        
+        
+    }
+    
     @Override
     public String getDescription(int quality) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
