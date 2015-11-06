@@ -29,6 +29,11 @@ public class Street extends MapLocation {
             //One layer above
             getOpenings()[i%3][i/3][2] = false;
         }
+        
+        //Limits movement to strictly NESW.
+        for(int i = 0; i < 4; i++)
+            getOpenings()[(i%2)*2][(i/2)*2][1] = false;
+        
     }
     
     /**
