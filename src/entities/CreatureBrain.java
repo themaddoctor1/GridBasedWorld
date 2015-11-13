@@ -18,7 +18,7 @@ public abstract class CreatureBrain {
      * Sets a new CreatureBrain to delegate.
      * @param c The new delegator.
      */
-    public final void setDelegator(Creature c) {
+    public final void setCreature(Creature c) {
         delegator = c;
     }
     
@@ -26,7 +26,7 @@ public abstract class CreatureBrain {
      * Gets the current Creature that this CreatureBrain is assisting..
      * @return The delegator.
      */
-    public final Creature getDelegator() {
+    public final Creature getCreature() {
         return delegator;
     }
     
