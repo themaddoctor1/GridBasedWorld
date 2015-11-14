@@ -6,7 +6,8 @@
 package map;
 
 /**
- *
+ * MapLocation represents a location within a Map.
+ * 
  * @author Christopher Hittner
  */
 public abstract class MapLocation extends Cell implements Describable {

@@ -16,7 +16,7 @@ import map.MapLocation;
  *
  * @author Christopher Hittner
  */
-public class Creature extends Entity {
+public abstract class Creature extends Entity {
     
     protected CreatureBrain brain = null;
     protected Inventory inventory = new Inventory();
@@ -45,6 +45,16 @@ public class Creature extends Entity {
      */
     public final CreatureBrain getBrain() {
         return brain;
+    }
+    
+    @Override
+    public void act(Object... params) {
+        if(brain != null)
+            brain.act(params);
+    }
+    
+    public MapLocation getLocation() {
+        return (MapLocation) this.getCell();
     }
     
 }

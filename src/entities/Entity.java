@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Entity.java
+ *
+ * Christopher Hittner (c) 2015
  */
 package entities;
 
@@ -20,6 +20,16 @@ public abstract class Entity {
      */
     public Entity(Cell loc) {
         location = loc;
+    }
+    
+    /**
+     * Simulates stuff for this Entity.
+     * @param params 
+     */
+    public abstract void act(Object... params);
+    
+    public final Cell getCell() {
+        return location;
     }
     
 }
