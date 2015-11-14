@@ -6,6 +6,7 @@
 
 package items;
 
+import java.util.HashMap;
 import map.Describable;
 
 /**
@@ -39,7 +40,7 @@ public abstract class Item implements Describable {
      * Uses the Item.
      * @param params A set of objects used to help with using the Item.
      */
-    public final void use(Object... params) {
+    public final void use(HashMap<String, Object> params) {
         if((REUSABLE || !wasUsed) && canUse(params)) {
             executeUse(params);
             wasUsed = true;
@@ -51,13 +52,13 @@ public abstract class Item implements Describable {
      * @param params The information given to the use() method.
      * @return Whether or not to permit use of the executeUse() method.
      */
-    public abstract boolean canUse(Object... params);
+    public abstract boolean canUse(HashMap<String, Object> params);
     
     /**
      * Uses the Item.
      * @param params Any information that may help with using the Item.
      */
-    protected abstract void executeUse(Object... params);
+    protected abstract void executeUse(HashMap<String, Object> params);
     
     
     

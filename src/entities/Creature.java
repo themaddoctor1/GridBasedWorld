@@ -6,6 +6,7 @@
 package entities;
 
 import items.Inventory;
+import java.util.HashMap;
 import map.Cell;
 import map.MapLocation;
 
@@ -47,8 +48,9 @@ public abstract class Creature extends Entity {
         return brain;
     }
     
+    
     @Override
-    public void act(Object... params) {
+    public void act(HashMap<String, Object> params) {
         if(brain != null)
             brain.act(params);
     }

@@ -5,6 +5,8 @@
  */
 package entities;
 
+import java.util.HashMap;
+
 /**
  * Runs processes for a Creature using the Delegation pattern, where 
  * a Creature is the listener because it is receiving the commands.
@@ -34,6 +36,6 @@ public abstract class CreatureBrain {
      * Performs necessary actions.
      * @param params What the CreatureBrain is given to work with.
      */
-    public abstract void act(Object... params);
+    public abstract void act(HashMap<String, Object> params);
     
 }

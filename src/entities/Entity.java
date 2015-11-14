@@ -5,6 +5,7 @@
  */
 package entities;
 
+import java.util.HashMap;
 import map.Cell;
 
 /**
@@ -26,7 +27,7 @@ public abstract class Entity {
      * Simulates stuff for this Entity.
      * @param params 
      */
-    public abstract void act(Object... params);
+    public abstract void act(HashMap<String, Object> params);
     
     public final Cell getCell() {
         return location;
