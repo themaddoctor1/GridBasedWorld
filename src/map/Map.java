@@ -39,5 +39,4 @@ public class Map extends CellGrid {
     }
     
     
-    
 }
