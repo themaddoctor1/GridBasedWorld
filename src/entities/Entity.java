@@ -15,12 +15,16 @@ import map.Cell;
 public abstract class Entity {
     private Cell location = null;
     
+    private static long nextID = Long.MIN_VALUE;
+    public final long ID;
+    
     /**
      * Creates an Entity that has a position.
      * @param loc The initial location of the Entity.
      */
     public Entity(Cell loc) {
         location = loc;
+        ID = nextID++;
     }
     
     /**
@@ -31,6 +35,10 @@ public abstract class Entity {
     
     public final Cell getCell() {
         return location;
+    }
+    
+    public void setCell(Cell loc) {
+        location = loc;
     }
     
 }

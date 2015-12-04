@@ -5,6 +5,7 @@
  */
 package map;
 
+import entities.Creature;
 import entities.Entity;
 import java.util.Arrays;
 
@@ -110,6 +111,14 @@ public class EntityList {
      */
     public int size() {
         return entities.length;
+    }
+
+    public Entity get(long targetID) {
+        for(int i = 0; i < entities.length; i++)
+            if(entities[i].ID == targetID)
+                return entities[i];
+        
+        return null;
     }
     
 }

@@ -56,8 +56,14 @@ public abstract class Creature extends Entity {
             brain.act(params);
     }
     
+    
     public MapLocation getLocation() {
         return (MapLocation) this.getCell();
+    }
+    
+    
+    public void setLocation(MapLocation loc) {
+       this.setCell(loc);
     }
     
 }

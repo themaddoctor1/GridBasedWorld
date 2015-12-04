@@ -38,4 +38,19 @@ public abstract class CreatureBrain {
      */
     public abstract void act(HashMap<String, Object> params);
     
+    /**
+     * Moves the Creature in a given direction if allowed.
+     * @param x The x-value, whare |x| <= 1.
+     * @param y The y-value, where |y| <= 1.
+     * @param z The z-value, where |z| <= 1.
+     */
+    protected abstract void move(int x, int y, int z);
+    
+    
+    /**
+     * Attacks a Creature.
+     * @param target The target of the attack.
+     */
+    protected abstract void attack(Creature target);
+    
 }
