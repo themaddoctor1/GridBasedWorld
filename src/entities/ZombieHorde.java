@@ -19,7 +19,7 @@ public class ZombieHorde extends Creature implements Combinable {
         super(loc);
         size = amount;
     }
-
+    
     @Override
     public boolean addOther(Combinable other) {
         if(other instanceof ZombieHorde) {
@@ -60,7 +60,7 @@ public class ZombieHorde extends Creature implements Combinable {
         size -= overflow;
         return overflow;
     }
-
+    
     @Override
     public void removeAll() {
         size = 0;

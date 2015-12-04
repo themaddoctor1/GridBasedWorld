@@ -6,6 +6,7 @@
 package entities;
 
 import items.Inventory;
+import items.Loadout;
 import java.util.HashMap;
 import map.Cell;
 import map.MapLocation;
@@ -20,7 +21,7 @@ import map.MapLocation;
 public abstract class Creature extends Entity {
     
     protected CreatureBrain brain = null;
-    protected Inventory inventory = new Inventory();
+    protected Loadout inventory = new Loadout();
     
     
     /**
