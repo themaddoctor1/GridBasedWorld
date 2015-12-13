@@ -13,6 +13,10 @@ import java.util.ArrayList;
  */
 public class ButtonPanel extends IOPanel {
     private ArrayList<Button> buttons = new ArrayList<>();
+
+    public ButtonPanel(String nm) {
+        super(nm);
+    }
     
     /**
      * Clicks the mouse at a coordinate.

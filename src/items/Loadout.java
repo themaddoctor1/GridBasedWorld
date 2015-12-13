@@ -44,6 +44,16 @@ public class Loadout {
     public Inventory getInventory() {
         return inventory;
     }
+
+    /**
+     * Removes the Item in the hand.
+     * @return The held item.
+     */
+    public Item takeHeldItem() {
+        Item result = getHeldItem();
+        inHand = null;
+        return result;
+    }
     
     
 }

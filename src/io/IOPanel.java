@@ -15,6 +15,16 @@ import java.awt.Graphics;
 public abstract class IOPanel {
     
     private IOPanel subpanel = null;
+    public final String NAME;
+    
+    /**
+     * Creates an IOPanel with a name.
+     * @param nm The name of the new IOPanel.
+     */
+    public IOPanel (String nm) {
+        NAME = nm;
+    }
+    
     
     /**
      * Runs mouse click operations.

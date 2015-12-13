@@ -6,7 +6,6 @@
 package io;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
 
 /**
  * A class that manages all of the IO for an Interface.

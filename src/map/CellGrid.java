@@ -90,6 +90,48 @@ public abstract class CellGrid {
     }
     
     /**
+     * Places a Cell at the selected coordinate.
+     * @param x The x-coordinate.
+     * @param y The y-coordinate.
+     * @param z The z-coordinate.
+     * @param c The Cell to insert.
+     * @return The Cell that used to be stored at that position, or null.
+     */
+    public Cell setPosition(int x, int y, int z, Cell c) {
+        if(x < 0) {
+            //Cell is out of bounds on x, so create a Western layer and resursively call
+            //for the insertion.
+            addLayerWest();
+            return setPosition(x+1, y, z, c);
+        } else if(x >= sizeX()) {
+            //Cell is out of bounds on x, so create an Eastern layer and recursively call for the insertion.
+            addLayerEast();
+            return setPosition(x, y, z, c);
+        } else if(y < 0) {
+            //Cell is out of bounds on y, so create a Southern layer and resursively call
+            //for the insertion.
+            addLayerSouth();
+            return setPosition(x+1, y, z, c);
+        } else if(y >= sizeY()) {
+            //Cell is out of bounds on x, so create an Eastern layer and recursively call for the insertion.
+            addLayerNorth();
+            return setPosition(x, y, z, c);
+        } else if(z < 0) {
+            //Underground Cells are not supported; throw an error.
+            throw new IllegalArgumentException("The position's z value of " + z + " can't be negative!");
+        }
+        
+        //Grabs a reference to the replaced Cell prior to removal.
+        Cell removed = getCell(x, y, z);
+        
+        //Replaces the old Cell with the new one.
+        cells[x][y][z] = c;
+        
+        return removed;
+        
+    }
+    
+    /**
      * Gets the size on the x-axis
      * @return The size of the x-axis
      */
@@ -136,12 +178,13 @@ public abstract class CellGrid {
      */
     public void addLayerAbove() {
         for(int x = 0; x < cells.length; x++)
-            for(int y = 0; y < cells[x].length; y++)
+            for(int y = 0; y < cells[x].length; y++) {
                 cells[x][y] = Arrays.copyOf(cells[x][y], cells[x][y].length + 1);
+            }
     }
     
     /*
-     * Adds a layer on the North side
+     * Adds a layer on the North side (+y)
      */
     public void addLayerNorth() {
         for(int x = 0; x < cells.length; x++) {
@@ -152,7 +195,7 @@ public abstract class CellGrid {
     }
     
     /*
-     * Adds a layer on the North side
+     * Adds a layer on the North side (-y)
      */
     public void addLayerSouth() {
         for(int x = 0; x < cells.length; x++) {

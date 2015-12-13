@@ -22,13 +22,13 @@ public class PlayerBrain extends CreatureBrain {
         
         //Checks for the prefix, which will indicate the command type.
         if(command != null) switch(command.substring(0, command.indexOf(" "))) {
-            case "atk":
+            case "attack":
                 //Pulls the target's ID out of the String.
                 long targetID = Long.parseLong(command.substring(command.indexOf(" ") + 1));
                 //Attacks
                 attack((Creature) MapManager.getEntitiyList().get(targetID));
                 break;
-            case "mov":
+            case "move":
                 //Gets the movement parameters
                 String movement = command.substring(command.indexOf(" ") + 1);
                 //Gets each of the three coords.
@@ -41,8 +41,18 @@ public class PlayerBrain extends CreatureBrain {
                 move((int) Math.signum(movX), (int) Math.signum(movY), (int) Math.signum(movZ));
                 break;
             case "equip":
-                int slot = Integer.parseInt(command.substring(command.indexOf(" ") + 1));
-                getCreature().inventory.equipItem(slot);
+                int equipSlot = Integer.parseInt(command.substring(command.indexOf(" ") + 1));
+                getCreature().inventory.equipItem(equipSlot);
+                break;
+            case "drop":
+                int dropSlot = Integer.parseInt(command.substring(command.indexOf(" ") + 1));
+                if(dropSlot >= 0)
+                    getCreature().inventory.getInventory().remove(dropSlot);
+                else if(dropSlot == -1)
+                    getCreature().inventory.takeHeldItem();
+                break;
+            case "search":
+                throw new UnsupportedOperationException("Search action for PlayerBrain has not been written.");
         }
         
     }
