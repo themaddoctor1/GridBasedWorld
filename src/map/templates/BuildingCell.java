@@ -15,6 +15,14 @@ import map.MapLocation;
 public class BuildingCell extends MapLocation {
 
     /**
+     * BuildingCellType is used to simplify identification of building types.
+     */
+    public static enum BuildingCellType {
+        BOTTOM, TOP, NO_VERTICAL, FULL_VERTICAL
+    }
+    
+    
+    /**
      * Creates a BuildingCell that only allows vertical motion.
      */
     public BuildingCell() {
@@ -43,7 +51,7 @@ public class BuildingCell extends MapLocation {
      * @param type The type of BuildingCell.
      * @param permittivity The permittivity on the current level.
      */
-    public BuildingCell(String type, boolean[][] permittivity) {
+    public BuildingCell(BuildingCellType type, boolean[][] permittivity) {
         
         this();
         
@@ -52,17 +60,21 @@ public class BuildingCell extends MapLocation {
         
         switch (type) {
             //Bottom floor should not have a bottom opening.
-            case "bottom_floor":
+            case BOTTOM:
                 setOpening(0, 0, -1, false);
                 break;
             //One can't simply go up when there is nothing above...
-            case "top_floor":
+            case TOP:
                 setOpening(0, 0, 1, false);
                 break;
-            case "no_vertical":
+            case NO_VERTICAL:
                 setOpening(0, 0, -1, false);
                 setOpening(0, 0, 1, false);
                 break;
+            case FULL_VERTICAL:
+                setOpening(0, 0, -1, true);
+                setOpening(0, 0, 1, true);
+                
                 
         }
         

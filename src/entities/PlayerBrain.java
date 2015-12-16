@@ -45,24 +45,27 @@ public class PlayerBrain extends CreatureBrain {
                 getCreature().inventory.equipItem(equipSlot);
                 break;
             case "drop":
-                int dropSlot = Integer.parseInt(command.substring(command.indexOf(" ") + 1));
+                //Drops an Item from the Player's inventory. Or, it will take whatever the player is holding if nothing is held.
+                
+                //Gets the index of the Item.
+                int dropSlot;
+                try {
+                    //If a number is given, it is assigned.
+                    dropSlot = Integer.parseInt(command.substring(command.indexOf(" ") + 1));
+                } catch(Exception e) {
+                    //If no number is given, set it to -1 so that the program parses it as a hand item drop.
+                    dropSlot = -1;
+                }
+                
+                //If the item is in the inventory, drop the inventory item.
                 if(dropSlot >= 0)
                     getCreature().inventory.getInventory().remove(dropSlot);
                 else if(dropSlot == -1)
+                    //Otherwise, drop what's in the hand.
                     getCreature().inventory.takeHeldItem();
                 break;
             case "search":
                 throw new UnsupportedOperationException("Search action for PlayerBrain has not been written.");
-        }
-        
-    }
-
-    @Override
-    protected void move(int x, int y, int z) {
-        MapLocation loc = getCreature().getLocation();
-        
-        if(loc.getOpenings()[x][y][z]) {
-            getCreature().setCell(MapManager.getMap().getCellRelative(loc, x, y, z));
         }
         
     }
