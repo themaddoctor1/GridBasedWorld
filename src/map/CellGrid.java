@@ -119,6 +119,10 @@ public abstract class CellGrid {
         } else if(z < 0) {
             //Underground Cells are not supported; throw an error.
             throw new IllegalArgumentException("The position's z value of " + z + " can't be negative!");
+        } else if(z >= sizeZ()) {
+            //Cell is out of bounds on z, so create a top layer and recursively call for the insertion.
+            addLayerAbove();
+            return setPosition(x, y, z, c);
         }
         
         //Grabs a reference to the replaced Cell prior to removal.

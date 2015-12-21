@@ -66,7 +66,8 @@ public class MapBuilder {
      * @param length The size on the y-axis, including the road on all sides.
      * @param minHeight The smallest allowed height.
      * @param maxHeight The largest allowed height.
-     * @condition 0 < minHeight <= maxHeight
+     * @condition 0 < minHeight <= maxHeight.
+     *            If this is not ensured, the numbers will be reversed.
      * @condition width > 2
      * @condition length > 2
      * @return A city block.

@@ -14,7 +14,7 @@ import java.awt.Graphics;
  * @author Christopher Hittner
  */
 public class Button {
-    public final String COMMAND;
+    public final String COMMAND, DISPLAY_TEXT;
     
     //The dimensions of the Button
     public final int X, Y, W, H;
@@ -22,13 +22,15 @@ public class Button {
     /**
      * Creates a Button that has dimension and a command
      * @param cmd The command.
+     * @param txt The text to be displayed on the Button.
      * @param x The x position of the top left corner.
      * @param y The y position of the top left corner.
      * @param w The width of the button.
      * @param h The height of the button.
      */
-    public Button(String cmd, int x, int y, int w, int h) {
+    public Button(String cmd, String txt, int x, int y, int w, int h) {
         COMMAND = cmd;
+        DISPLAY_TEXT = txt;
         X = x;
         Y = y;
         W = w;
