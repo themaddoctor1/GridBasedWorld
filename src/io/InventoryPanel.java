@@ -69,7 +69,7 @@ public class InventoryPanel  extends IOPanel {
                 IOTextLabel itemDesc = new IOTextLabel(item.DESCRIPTION(), 100, 85 + 40*idx, 12);
                 
                 //Buttons
-                Button drop = new Button("ERROR[Inventory drop button not written yet.]", "DROP", 10, 60 + 40*idx, 40, 40);
+                Button drop =  new Button("ERROR[Inventory drop button not written yet.]" , "DROP", 10, 60 + 40*idx, 40, 40);
                 Button equip = new Button("ERROR[Inventory equip button not written yet.]", "EQUIP", 50, 60 + 40*idx, 40, 40);
                 
                 //Adds the Items.

@@ -6,10 +6,14 @@
 package map;
 
 import entities.Entity;
+import io.IOManager;
+import java.util.Arrays;
 
 /**
+ * MapManager manages all of the operations specifically designed to ensure the
+ * proper function of a Map object.
  *
- * @author Christopher
+ * @author Christopher Hittner
  */
 public class MapManager {
     private static Map map = null;
@@ -19,7 +23,7 @@ public class MapManager {
     
     /**
      * Simulates the passage of a certain amount of time in seconds.
-     * @param t 
+     * @param t The amount of time to pass.
      */
     public static void passTime(double t) {
         throw new UnsupportedOperationException("map.MapManager.passTime() has not been written yet.");
@@ -67,6 +71,34 @@ public class MapManager {
      */
     public static EntityList getEntitiyList() {
         return entities;
+    }
+
+    /**
+     * Executes a MapManager-specific command.
+     * Commands are formatted as FUNCTION_NAME[<PARAM>|<PARAM>|...|<PARAM>]
+     * @param function The command to execute.
+     */
+    public static void executeCommand(String function) {
+        //Gets the function name
+        String funcName = function.substring(0, function.indexOf("["));
+        
+        String[] params = IOManager.parseCommandParameters(function);
+        
+        switch(funcName) {
+            case "PASS_TIME":
+                //Time will be passed. First, calculate the time passed, which is the first argument.
+                try {
+                    double timePassed = Double.parseDouble(params[0]);
+                    passTime(timePassed);
+                } catch(NumberFormatException nfe) {
+                    throw new IllegalArgumentException("Parameter " + params[0] + " for 'PASS_TIME' is not valid.");
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Function '" + funcName + "' is not defined for MapManager.");
+        }
+        
+        //throw new UnsupportedOperationException("map.MapManager.executeCommand() has not been written yet.");
     }
     
 }
