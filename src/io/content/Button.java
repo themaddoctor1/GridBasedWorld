@@ -51,9 +51,11 @@ public class Button extends IOContent {
         int fontSize = (int) Math.min((W/DISPLAY_TEXT.length()) / 0.86, 0.8f * H);
         g.setFont(new Font("Courier New", Font.PLAIN, fontSize));
         
+        //Calculates how much to offset the text by.
         int txtHorizOff = (int)(fontSize*0.43*DISPLAY_TEXT.length());
         int txtVertOff = fontSize/2;
         
+        //Draws the text
         g.drawString(DISPLAY_TEXT, X + W/2 - txtHorizOff, Y + H/2 - txtVertOff);
         
     }
