@@ -5,6 +5,8 @@
  */
 package io;
 
+import io.content.Button;
+import io.content.IOContent;
 import items.Inventory;
 import items.Item;
 import java.util.ArrayList;
@@ -21,18 +23,22 @@ public class InventoryPanel  extends IOPanel {
         
         //Provides a background.
         BlankPanel background = new BlankPanel("BKGRND");
-        this.setSubpanel(background);
         
         //Creates and adds buttons
-        ButtonPanel buttons = new ButtonPanel("BTNS");
+        ContentPanel inventory = new ContentPanel("INV_DISP");
+        ArrayList<IOContent> invContent = generateContent(inv);
+        for(IOContent c : invContent)
+            inventory.addContent(c);
         
-        
+        //Puts the Items onto the Inventory in order.
+        this.sendToTop(background);
+        this.sendToTop(inventory);
     }
     
-    private static ArrayList<Button> generateButtons(Inventory inv) {
+    private static ArrayList<IOContent> generateContent(Inventory inv) {
         
         //Holds the list of buttons.
-        ArrayList<Button> buttons = new ArrayList<>();
+        ArrayList<IOContent> content = new ArrayList<>();
         
         //Tracks the number of items that were skipped.
         int skippedItems = 0;
@@ -47,7 +53,7 @@ public class InventoryPanel  extends IOPanel {
             } else skippedItems++; // Otherwise, increase the number of skipped items because this one was skipped.
         }
         
-        return buttons;
+        return content;
         
     }
 

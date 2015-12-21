@@ -3,8 +3,9 @@
  * 
  * Christopher Hittner (c) 2015
  */
-package io;
+package io.content;
 
+import io.IOManager;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -13,11 +14,9 @@ import java.awt.Graphics;
  * 
  * @author Christopher Hittner
  */
-public class Button {
+public class Button extends IOContent {
     public final String COMMAND, DISPLAY_TEXT;
     
-    //The dimensions of the Button
-    public final int X, Y, W, H;
     
     /**
      * Creates a Button that has dimension and a command
@@ -29,31 +28,29 @@ public class Button {
      * @param h The height of the button.
      */
     public Button(String cmd, String txt, int x, int y, int w, int h) {
+        super(x, y, w, h);
+        
         COMMAND = cmd;
         DISPLAY_TEXT = txt;
-        X = x;
-        Y = y;
-        W = w;
-        H = h;
     }
     
     /**
-     * Determines whether or not a pixel is inside the Button.
-     * @param x The x-coordinate.
-     * @param y The y-coordinate.
-     * @return 
+     * Draw this Button
+     * @param g A Graphics object to draw on.
      */
-    public boolean contains(int x, int y) {
-        return X <= x && X + W > x
-                && Y <= y && Y + H > y;
-    }
-    
+    @Override
     public void draw(Graphics g) {
         //Draws the button.
         g.fillRect(X, Y, W, H);
         Color current = g.getColor();
         //Text has the opposite color.
         g.setColor(new Color(255 - current.getRed(), 255 - current.getGreen(), 255 - current.getBlue()));
+    }
+
+    @Override
+    public void clickOperation(int x, int y) {
+        if(this.contains(x, y))
+            IOManager.executeCommand(COMMAND);
     }
     
 }

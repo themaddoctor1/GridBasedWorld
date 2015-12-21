@@ -39,11 +39,15 @@ public abstract class IOPanel {
      * @param y The y-coordinate.
      */
     public final void mouseClicked(int x, int y) {
-        clickOperation(x, y);
-        
+        //Ordering ensures that the item on top goes first. The idea is that items
+        //on top are drawn first because the top item will be at the end of the
+        //IOPanel chain (Linked List?)
         try {
             subpanel.mouseClicked(x, y);
         } catch(NullPointerException npe) {}
+        
+        clickOperation(x, y);
+        
     }
     
     /**
@@ -70,7 +74,10 @@ public abstract class IOPanel {
      * @param g A Graphics object.
      */
     public final void drawPanel(Graphics g) {
+        //Draws this.
         draw(g);
+        
+        //Then, draw the thing on top of this.
         if(subpanel != null)
             subpanel.drawPanel(g);
     }
