@@ -9,7 +9,7 @@ import io.content.*;
 import java.util.ArrayList;
 
 /**
- * A ContentPanel has subcomponents that allow for this to be customizable..
+ * A ContentPanel has subcomponents that allow for this to be customizable.
  *
  * @author Christopher Hittner
  */

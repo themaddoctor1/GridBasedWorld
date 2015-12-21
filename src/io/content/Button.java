@@ -7,6 +7,7 @@ package io.content;
 
 import io.IOManager;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 /**
@@ -45,6 +46,16 @@ public class Button extends IOContent {
         Color current = g.getColor();
         //Text has the opposite color.
         g.setColor(new Color(255 - current.getRed(), 255 - current.getGreen(), 255 - current.getBlue()));
+        
+        //Generates the font
+        int fontSize = (int) Math.min((W/DISPLAY_TEXT.length()) / 0.86, 0.8f * H);
+        g.setFont(new Font("Courier New", Font.PLAIN, fontSize));
+        
+        int txtHorizOff = (int)(fontSize*0.43*DISPLAY_TEXT.length());
+        int txtVertOff = fontSize/2;
+        
+        g.drawString(DISPLAY_TEXT, X + W/2 - txtHorizOff, Y + H/2 - txtVertOff);
+        
     }
 
     @Override
