@@ -60,6 +60,19 @@ public abstract class Item implements Describable {
      */
     protected abstract void executeUse(HashMap<String, Object> params);
     
+    /**
+     * This method provides a description of the Item.
+     * 
+     * @return The description of this.
+     */
+    public abstract String DESCRIPTION();
+    
+    /**
+     * This method provides the name of the Item, which must be written by any subclasses.
+     * 
+     * @return The name of the Item.
+     */
+    public abstract String NAME();
     
     
 }
