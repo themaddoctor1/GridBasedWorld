@@ -72,7 +72,32 @@ public class MapManager {
     public static EntityList getEntitiyList() {
         return entities;
     }
-
+    
+    /**
+     * Adds a 3D set of coordinates to the Map.
+     * @param grid The MapLocations to add.
+     * @param x The Western, lowest x-coordinate.
+     * @param y The Southern, lowest y-coordinate.
+     * @param z The lowest z-coordinate.
+     */
+    public static void addMapLocation(MapLocation[][][] grid, int x, int y, int z) {
+        //First, ensure that the MapLocations will be in bounds.
+        if(x < 0) {
+            map.addLayerWest();
+            addMapLocation(grid, x+1, y, z);
+        } else if(y < 0) {
+            map.addLayerWest();
+            addMapLocation(grid, x+1, y, z);
+        } else if(z < 0) 
+            throw new IllegalArgumentException("The z-coordinate must be non-negative!");
+        else 
+            //Once it is ensured, add the Cell.
+            for(int i = 0; i < grid.length; i++)
+                for(int j = 0; j < grid[i].length; j++)
+                    for(int k = 0; k < grid[i][j].length; k++)
+                        map.setPosition(x+i, y+j, z+k, grid[i][j][k]);
+    }
+    
     /**
      * Executes a MapManager-specific command.
      * Commands are formatted as FUNCTION_NAME[<PARAM>|<PARAM>|...|<PARAM>]

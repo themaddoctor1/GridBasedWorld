@@ -5,6 +5,11 @@
  */
 package main;
 
+import io.BlankPanel;
+import io.IOManager;
+import io.Interface;
+import java.awt.Color;
+
 /**
  *
  * @author Christopher
@@ -16,6 +21,16 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        BlankPanel panel = new BlankPanel("PANEL", Color.RED);
+        IOManager.setIOPanel(panel);
+        
+        Interface.initialize("Title");
+        
+        while(true) {
+            Interface.getInterface().redraw();
+        }
+        
     }
     
 }

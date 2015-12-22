@@ -23,11 +23,33 @@ public class IOManager {
      * Adds an IOPanel to the IOManager.
      * @param io The panel.
      */
-    public void addIOPanel(IOPanel io) {
+    public static void addIOPanel(IOPanel io) {
         if(topPanel == null)
             topPanel = io;
         else
             topPanel.sendToTop(io);
+    }
+    
+    
+    /**
+     * Swaps the current top IOPanel with a new one.
+     * @param io The new IOPanel.
+     * @return  The old IOPanel.
+     */
+    public static IOPanel setIOPanel(IOPanel io) {
+        IOPanel old = topPanel;
+        topPanel = io;
+        return old;
+    }
+    
+    
+    /**
+     * Clicks on the IO, therefore requiring the IOPanel to be notified of the click.
+     * @param x The position on x.
+     * @param y The position on y.
+     */
+    public static void mouseClicked(int x, int y) {
+        topPanel.mouseClicked(x, y);
     }
     
     /**
@@ -119,7 +141,7 @@ public class IOManager {
      * Draws the IO.
      * @param g A Graphics object.
      */
-    public void draw(Graphics g) {
+    public static void draw(Graphics g) {
         try {
             topPanel.draw(g);
         } catch(NullPointerException npe) { }

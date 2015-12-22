@@ -5,9 +5,8 @@
  */
 package map;
 
-import map.templates.BuildingCell;
+import map.templates.*;
 import map.templates.BuildingCell.BuildingCellType;
-import map.templates.StreetCell;
 
 /**
  * MapBuilder is a static class that is used to generate maps and substructures.
