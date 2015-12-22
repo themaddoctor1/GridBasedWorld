@@ -92,6 +92,7 @@ public class LoadoutPanel  extends IOPanel {
                 Button equip = new Button("ERROR[Inventory equip button not written yet.]", "EQUIP", 50, 80 + 40*idx, 40, 40);
                 
                 //Adds the Items.
+                content.add(box);
                 content.add(itemName);
                 content.add(itemDesc);
                 content.add(drop);
