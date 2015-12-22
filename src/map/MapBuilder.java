@@ -78,7 +78,8 @@ public class MapBuilder {
         
         //Makes sure that maxHeight is greater than or equal to the minHeight.
         if(maxHeight < minHeight)
-            return buildCityBlock(length, maxHeight, minHeight);
+            return buildCityBlock(length, maxHeight, minHeight); //Recursive call with switched parameters.
+        
         //The result: it is ensured that maxHeight > minHeight.
         
         if(length < 3)

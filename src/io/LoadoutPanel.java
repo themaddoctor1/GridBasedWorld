@@ -18,9 +18,9 @@ import java.util.ArrayList;
  *
  * @author Christopher Hittner
  */
-public class InventoryPanel  extends IOPanel {
+public class LoadoutPanel  extends IOPanel {
 
-    public InventoryPanel(Loadout load) {
+    public LoadoutPanel(Loadout load) {
         super("INV");
         
         //Provides a background.
