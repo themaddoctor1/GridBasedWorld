@@ -41,4 +41,10 @@ public abstract class Entity {
         location = loc;
     }
     
+    /**
+     * Simulates the passage of a period of time.
+     * @param t The time to pass.
+     */
+    public abstract void passTime(double t);
+    
 }

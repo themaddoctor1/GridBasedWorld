@@ -12,7 +12,7 @@ import map.MapLocation;
  * 
  * @author Christopher Hittner
  */
-public class ZombieHorde extends Creature implements Combinable {
+public class ZombieHorde extends NPC implements Combinable {
     private int size;
 
     public ZombieHorde(MapLocation loc, int amount) {

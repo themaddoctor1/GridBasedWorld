@@ -5,10 +5,8 @@
  */
 package entities;
 
-import items.Inventory;
 import items.Loadout;
 import java.util.HashMap;
-import map.Cell;
 import map.MapLocation;
 
 /**
