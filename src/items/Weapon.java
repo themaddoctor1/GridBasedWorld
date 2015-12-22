@@ -21,10 +21,13 @@ public abstract class Weapon extends Item {
     protected final void executeUse(HashMap<String, Object> params) {
         
         if(params.get("ATTACK") != null) try {
-            Creature user = (Creature) params.get("USER");
-            Creature targ = (Creature) params.get("ATTACK");
             
-            attack(user, targ);
+            //Grabs the parameters; the user and the victim.
+            Creature user = (Creature) params.get("USER");
+            Creature victim = (Creature) params.get("ATTACK");
+            
+            //Launches the attack
+            attack(user, victim);
             
         } catch(Exception e) {
             throw new IllegalArgumentException("Parameter '" + params.get("ATTACK") + "' for ATTACK is invalid.");
@@ -37,7 +40,7 @@ public abstract class Weapon extends Item {
      * @return The accuracy; <% accuracy> / 100%
      */
     public abstract double accuracy();
-
+    
     /**
      * Attacks the targeted Creature, if permitted.
      * @param user The Creature that is attacking.

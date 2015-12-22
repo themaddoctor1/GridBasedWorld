@@ -7,10 +7,12 @@ package io;
 
 import io.content.Button;
 import io.content.IOContent;
+import io.content.IOShape;
 import io.content.IOTextLabel;
 import items.Inventory;
 import items.Item;
 import items.Loadout;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 /**
@@ -51,13 +53,29 @@ public class LoadoutPanel  extends IOPanel {
         //Holds the list of buttons.
         ArrayList<IOContent> content = new ArrayList<>();
         
-        content.add(new Button("ERROR[Inventory exit button not written yet.]", "<-", 20, 20, 40, 40));
+        //Adds the return to main screen button.
+        content.add(new Button("IO_MANAGER.SET_DISPLAY[game_main]", "<-", 20, 20, 40, 40));
+        
+        //Up button
+        content.add(new Button("IO_MANAGER.SET_DISPLAY[inventory|" + ((itemsSkipped-1)&0x7fffffff) + "]", "^"
+                , Interface.getInterface().getWidth() - 60, 20, 40, 40));
+        
+        //Down button
+        content.add(new Button("IO_MANAGER.SET_DISPLAY[inventory|" + (Math.min(itemsSkipped+1, inv.size())) + "]", "v"
+                , Interface.getInterface().getWidth() - 60, Interface.getInterface().getHeight() - 60, 40, 40));
         
         //Tracks the number of items that were skipped.
         int numInvalid = itemsSkipped;
         
-        //For each item in the list, attempt to add a Button and label for it.
-        for(int i = itemsSkipped; i < inv.size(); i++) {
+        //Calculates the maximum number of items to display. Two sets of 80px margins are provided.
+        int maxDisplayed = (Interface.getInterface().getHeight() - (80*2))/40;
+        
+        /*
+         *(For each item in the list, attempt to add a Button and label for it.
+         *The labels will be 40px thick. If all of the required labels are inserted, then
+         *cease adding them.
+        */
+        for(int i = itemsSkipped; i < inv.size() && maxDisplayed < i-numInvalid; i++) {
             Item item = inv.get(i);
             
             //If there is an item, take care of it.
@@ -65,12 +83,13 @@ public class LoadoutPanel  extends IOPanel {
                 int idx = i - numInvalid;
                 
                 //Labels
-                IOTextLabel itemName = new IOTextLabel(item.NAME()       , 100, 70 + 40*idx, 16);
-                IOTextLabel itemDesc = new IOTextLabel(item.DESCRIPTION(), 100, 85 + 40*idx, 12);
+                IOTextLabel itemName = new IOTextLabel(item.NAME()       , 100, 90 + 40*idx, 16);
+                IOTextLabel itemDesc = new IOTextLabel(item.DESCRIPTION(), 100, 105 + 40*idx, 12);
+                IOShape box = new IOShape(new Rectangle(0, 80 + 40*idx, Interface.getInterface().getWidth(), 40));
                 
                 //Buttons
-                Button drop =  new Button("ERROR[Inventory drop button not written yet.]" , "DROP", 10, 60 + 40*idx, 40, 40);
-                Button equip = new Button("ERROR[Inventory equip button not written yet.]", "EQUIP", 50, 60 + 40*idx, 40, 40);
+                Button drop =  new Button("ERROR[Inventory drop button not written yet.]" , "DROP", 10, 80 + 40*idx, 40, 40);
+                Button equip = new Button("ERROR[Inventory equip button not written yet.]", "EQUIP", 50, 80 + 40*idx, 40, 40);
                 
                 //Adds the Items.
                 content.add(itemName);
@@ -81,6 +100,8 @@ public class LoadoutPanel  extends IOPanel {
                 
             } else numInvalid++; // Otherwise, increase the number of skipped items because this one was skipped.
         }
+        
+        
         
         return content;
         
