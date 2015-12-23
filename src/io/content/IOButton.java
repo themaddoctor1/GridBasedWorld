@@ -15,9 +15,10 @@ import java.awt.Graphics;
  * 
  * @author Christopher Hittner
  */
-public class Button extends IOContent {
+public class IOButton extends IOContent {
     public final String COMMAND, DISPLAY_TEXT;
     
+    private Color border = Color.BLACK, fill = Color.WHITE, text = Color.BLACK;
     
     /**
      * Creates a Button that has dimension and a command
@@ -28,7 +29,7 @@ public class Button extends IOContent {
      * @param w The width of the button.
      * @param h The height of the button.
      */
-    public Button(String cmd, String txt, int x, int y, int w, int h) {
+    public IOButton(String cmd, String txt, int x, int y, int w, int h) {
         super(x, y, w, h);
         
         COMMAND = cmd;
@@ -41,23 +42,31 @@ public class Button extends IOContent {
      */
     @Override
     public void draw(Graphics g) {
+        
+        //Holds on to the old color
+        Color old = g.getColor();
+        
         //Draws the button.
+        g.setColor(border);
+        g.drawRect(X, Y, W, H);
+        g.setColor(fill);
         g.fillRect(X, Y, W, H);
-        Color current = g.getColor();
-        //Text has the opposite color.
-        g.setColor(new Color(255 - current.getRed(), 255 - current.getGreen(), 255 - current.getBlue()));
+        
+        //Set to the text color.
+        g.setColor(text);
         
         //Generates the font
         int fontSize = (int) Math.min((W/DISPLAY_TEXT.length()) / 0.86, 0.8f * H);
         g.setFont(new Font("Courier New", Font.PLAIN, fontSize));
         
         //Calculates how much to offset the text by.
-        int txtHorizOff = (int)(fontSize*0.43*DISPLAY_TEXT.length());
-        int txtVertOff = fontSize/2;
+        int txtHorizOff = (int)(fontSize*0.3*DISPLAY_TEXT.length());
+        int txtVertOff = fontSize/4;
         
         //Draws the text
-        g.drawString(DISPLAY_TEXT, X + W/2 - txtHorizOff, Y + H/2 - txtVertOff);
+        g.drawString(DISPLAY_TEXT, X + W/2 - txtHorizOff, Y + H/2 + txtVertOff);
         
+        g.setColor(old);
     }
 
     @Override

@@ -5,7 +5,7 @@
  */
 package io;
 
-import io.content.Button;
+import io.content.IOButton;
 import io.content.IOContent;
 import io.content.IOShape;
 import io.content.IOTextLabel;
@@ -49,30 +49,32 @@ public class LoadoutPanel extends IOPanel {
      */
     private static ArrayList<IOContent> generateContent(Loadout load, int itemsSkipped) {
         
+        //Holds the list of buttons.
+        ArrayList<IOContent> content = new ArrayList<>();
+        
+        //Adds the return to main screen button.
+        content.add(new IOButton("IO_MANAGER.SET_DISPLAY[game_main]", "<-", 20, 20, 40, 40));
+        
         //Null check.
         if(load == null)
-            return new ArrayList<>();
+            return content;
         
         //Grabs to inside Inventory.
         Inventory inv = load.getInventory();
         
         //Another null check.
         if(inv == null)
-            return new ArrayList<>();
-        
-        //Holds the list of buttons.
-        ArrayList<IOContent> content = new ArrayList<>();
-        
-        //Adds the return to main screen button.
-        content.add(new Button("IO_MANAGER.SET_DISPLAY[game_main]", "<-", 20, 20, 40, 40));
+            return content;
         
         //Up button
-        content.add(new Button("IO_MANAGER.SET_DISPLAY[inventory|" + ((itemsSkipped-1)&0x7fffffff) + "]", "^"
-                , Interface.getInterface().getWidth() - 60, 20, 40, 40));
+        if(itemsSkipped > 0)
+            content.add(new IOButton("IO_MANAGER.SET_DISPLAY[inventory|" + ((itemsSkipped-1)) + "]", "^"
+                    , Interface.getInterface().getWidth() - 60, 20, 40, 40));
         
         //Down button
-        content.add(new Button("IO_MANAGER.SET_DISPLAY[inventory|" + (Math.min(itemsSkipped+1, inv.size())) + "]", "v"
-                , Interface.getInterface().getWidth() - 60, Interface.getInterface().getHeight() - 60, 40, 40));
+        if(itemsSkipped < inv.size()-1)
+            content.add(new IOButton("IO_MANAGER.SET_DISPLAY[inventory|" + (itemsSkipped+1) + "]", "v"
+                    , Interface.getInterface().getWidth() - 60, Interface.getInterface().getHeight() - 60, 40, 40));
         
         //Tracks the number of items that were skipped.
         int numInvalid = itemsSkipped;
@@ -95,13 +97,13 @@ public class LoadoutPanel extends IOPanel {
                 int idx = i - numInvalid;
                 
                 //Labels
-                IOTextLabel itemName = new IOTextLabel(item.NAME()       , 100, 90 + 40*idx, 16);
-                IOTextLabel itemDesc = new IOTextLabel(item.DESCRIPTION(), 100, 105 + 40*idx, 12);
+                IOTextLabel itemName = new IOTextLabel(item.NAME()       , 100, 90 + 40*idx, 16, Color.WHITE);
+                IOTextLabel itemDesc = new IOTextLabel(item.DESCRIPTION(), 100, 105 + 40*idx, 12, Color.WHITE);
                 IOShape box = new IOShape(new Rectangle(0, 80 + 40*idx, Interface.getInterface().getWidth(), 40));
                 
                 //Buttons
-                Button drop =  new Button("ERROR[Inventory drop button not written yet.]" , "DROP", 10, 80 + 40*idx, 40, 40);
-                Button equip = new Button("ERROR[Inventory equip button not written yet.]", "EQUIP", 50, 80 + 40*idx, 40, 40);
+                IOButton drop =  new IOButton("ERROR[Inventory drop button not written yet.]" , "DROP", 10, 80 + 40*idx, 40, 40);
+                IOButton equip = new IOButton("ERROR[Inventory equip button not written yet.]", "EQUIP", 50, 80 + 40*idx, 40, 40);
                 
                 //Adds the contents required for this level.
                 content.add(box);

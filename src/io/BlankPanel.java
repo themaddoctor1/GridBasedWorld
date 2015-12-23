@@ -35,6 +35,7 @@ public class BlankPanel extends IOPanel {
     
     @Override
     public void draw(Graphics g) {
+        
         //Temporarily stored the original color and replaces it with the background color.
         Color original = g.getColor();
         g.setColor(background);
@@ -47,8 +48,6 @@ public class BlankPanel extends IOPanel {
     }
 
     @Override
-    public void clickOperation(int x, int y) {
-        throw new UnsupportedOperationException("io.BlankPanel.clickOperation() has not been written yet.."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void clickOperation(int x, int y) { }
     
 }

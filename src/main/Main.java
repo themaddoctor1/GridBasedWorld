@@ -5,9 +5,7 @@
  */
 package main;
 
-import io.BlankPanel;
-import io.IOManager;
-import io.Interface;
+import io.*;
 import java.awt.Color;
 
 /**
@@ -22,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        BlankPanel panel = new BlankPanel("PANEL", Color.RED);
+        IOPanel panel = new GameMainPanel("GAME_MAIN");
         IOManager.setIOPanel(panel);
         
         Interface.initialize("Title");

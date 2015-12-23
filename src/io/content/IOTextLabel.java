@@ -18,10 +18,12 @@ import java.awt.Graphics;
 public class IOTextLabel extends IOContent {
     
     public final String DISPLAY_TEXT;
+    public final Color COLOR;
     
-    public IOTextLabel(String txt, int x, int y, int fontSize) {
+    public IOTextLabel(String txt, int x, int y, int fontSize, Color c) {
         super(x, y, 0, fontSize);
         DISPLAY_TEXT = txt;
+        COLOR = c;
     }
     
     /**
@@ -30,15 +32,15 @@ public class IOTextLabel extends IOContent {
      */
     @Override
     public void draw(Graphics g) {
-        //Draws the button.
-        g.fillRect(X, Y, W, H);
-        Color current = g.getColor();
+        Color old = g.getColor();
         //Text has the opposite color.
-        g.setColor(new Color(255 - current.getRed(), 255 - current.getGreen(), 255 - current.getBlue()));
+        g.setColor(COLOR);
         
         g.setFont(new Font("Courier New", Font.PLAIN, H));
         //Draws the text
         g.drawString(DISPLAY_TEXT, X, Y);
+        
+        g.setColor(old);
         
     }
 

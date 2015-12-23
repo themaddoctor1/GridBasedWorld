@@ -22,20 +22,19 @@ public class GameMainPanel extends IOPanel {
         BlankPanel background = new BlankPanel("BKGRND", Color.BLACK);
         
         //Content Panel
-        ContentPanel content = new ContentPanel("MAIN_CTRL");
+        ContentPanel ctrl = new ContentPanel("MAIN_CTRL");
         ArrayList<IOContent> controls = generateControls();
         for(IOContent ioc : controls)
-            content.addContent(ioc);
+            ctrl.addContent(ioc);
         
         //Adds all of the Panels.
         sendToTop(background);
+        sendToTop(ctrl);
         
     }
 
     @Override
-    public void clickOperation(int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void clickOperation(int x, int y) { }
 
     private ArrayList<IOContent> generateControls() {
         ArrayList<IOContent> controls = new ArrayList<>();

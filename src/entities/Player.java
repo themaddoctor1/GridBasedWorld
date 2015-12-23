@@ -33,7 +33,7 @@ public final class Player extends Creature {
                 ? initPlayer()
                 : player;
     }
-
+    
     
     /**
      * Initializes a new Player.

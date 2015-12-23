@@ -6,6 +6,8 @@
 package io;
 
 import io.content.*;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 /**
@@ -60,6 +62,13 @@ public class ContentPanel extends IOPanel {
      */
     public IOContent removeButton(int idx) {
         return content.get(idx);
+    }
+    
+    @Override
+    public void draw(Graphics g) {
+        
+        for(IOContent i : content)
+            i.draw(g);
     }
     
 }

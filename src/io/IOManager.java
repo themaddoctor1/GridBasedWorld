@@ -72,7 +72,7 @@ public class IOManager {
             case "IO_MANAGER":
                 String[] params = parseCommandParameters(function);
                 
-                switch(function) {
+                switch(function.substring(0, function.indexOf("["))) {
                     //In this case, the user wishes to change the display.
                     case "SET_DISPLAY":
                         switch(params[0].toLowerCase()) {
@@ -102,6 +102,9 @@ public class IOManager {
                                 
                                 //Sets the new Panel.
                                 topPanel = new LoadoutPanel(Player.getPlayer().getLoadout(), invItemsSkipped);
+                                break;
+                            case "game_main":
+                                topPanel = new GameMainPanel("GAME_MAIN");
                                 break;
                             default:
                                 throw new IllegalArgumentException("'" + params[0] + "' was not recognized as a display type.");
@@ -152,7 +155,7 @@ public class IOManager {
      */
     public static void draw(Graphics g) {
         try {
-            topPanel.draw(g);
+            topPanel.drawPanel(g);
         } catch(NullPointerException npe) { }
     }
     

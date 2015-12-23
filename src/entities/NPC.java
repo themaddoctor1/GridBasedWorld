@@ -18,7 +18,7 @@ public class NPC extends Creature {
     public NPC(MapLocation loc) {
         super(loc);
     }
-
+    
     @Override
     public void passTime(double t) {
         
