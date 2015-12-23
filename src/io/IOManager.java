@@ -9,6 +9,7 @@ import entities.Player;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Arrays;
+import java.util.HashMap;
 import map.MapManager;
 
 /**
@@ -87,7 +88,7 @@ public class IOManager {
                                                     Integer.parseInt(params[2]),
                                                     Integer.parseInt(params[2])
                                             ));
-                                } catch(Exception nfe) { 
+                                } catch(Exception e) { 
                                     topPanel = new BlankPanel("BLANK");
                                 }
                                 break;
@@ -121,6 +122,11 @@ public class IOManager {
                 MapManager.executeCommand(function);
                 break;
             //If nothing can be called, throw an Exception.
+            case "PLAYER":
+                HashMap<String, Object> playerParameters = new HashMap<>();
+                playerParameters.put("cmd", function);
+                Player.getPlayer().act(playerParameters);
+                break;
             default:
                 throw new IllegalArgumentException("Target '" + target + "' is not valid.");
         }

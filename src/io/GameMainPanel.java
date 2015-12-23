@@ -50,7 +50,7 @@ public class GameMainPanel extends IOPanel {
         
         //Puts all of the buttons into the list in order.
         for(int i = 0; i < buttonDefs.length; i++) {
-            controls.add(new IOButton(buttonDefs[i][0], buttonDefs[i][1], 20, 40* (2+i), 240, 30));
+            controls.add(new IOButton(buttonDefs[i][0], buttonDefs[i][1], 30, 40* (2+i), 240, 30));
         }
         
         return controls;

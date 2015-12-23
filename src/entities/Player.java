@@ -40,7 +40,9 @@ public final class Player extends Creature {
      * @return The new Player.
      */
     public static Player initPlayer() {
-        return player = new Player(null);
+        player = new Player(null);
+        player.setBrain(new PlayerBrain());
+        return player;
     }
     
 }

@@ -25,7 +25,7 @@ public class Interface extends Applet implements MouseListener{
     
     protected Interface(String name){
         //this(480,320);
-        this(name, 800,600);
+        this(name, 1200, 900);
     }
     
     protected Interface(String name, int width, int height){
@@ -78,7 +78,7 @@ public class Interface extends Applet implements MouseListener{
     
     
     public static void initialize(String name){
-        gui = new Interface(name, 800, 600);
+        gui = new Interface(name);
     }
     
     public static void initialize(String name, int width, int height){

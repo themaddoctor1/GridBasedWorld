@@ -13,6 +13,7 @@ import items.Inventory;
 import items.Item;
 import items.Loadout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
@@ -53,7 +54,7 @@ public class LoadoutPanel extends IOPanel {
         ArrayList<IOContent> content = new ArrayList<>();
         
         //Adds the return to main screen button.
-        content.add(new IOButton("IO_MANAGER.SET_DISPLAY[game_main]", "<-", 20, 20, 40, 40));
+        content.add(new IOButton("IO_MANAGER.SET_DISPLAY[game_main]", "<-", 30, 30, 40, 40));
         
         //Null check.
         if(load == null)
@@ -69,18 +70,21 @@ public class LoadoutPanel extends IOPanel {
         //Up button
         if(itemsSkipped > 0)
             content.add(new IOButton("IO_MANAGER.SET_DISPLAY[inventory|" + ((itemsSkipped-1)) + "]", "^"
-                    , Interface.getInterface().getWidth() - 60, 20, 40, 40));
+                    , Interface.getInterface().getWidth() - 60, 30, 40, 40));
         
         //Down button
         if(itemsSkipped < inv.size()-1)
             content.add(new IOButton("IO_MANAGER.SET_DISPLAY[inventory|" + (itemsSkipped+1) + "]", "v"
-                    , Interface.getInterface().getWidth() - 60, Interface.getInterface().getHeight() - 60, 40, 40));
+                    , Interface.getInterface().getWidth() - 60, Interface.getInterface().getHeight() - 70, 40, 40));
         
         //Tracks the number of items that were skipped.
         int numInvalid = itemsSkipped;
         
         //Calculates the maximum number of items to display. Two sets of 80px margins are provided.
-        int maxDisplayed = (Interface.getInterface().getHeight() - (80*2))/40;
+        int maxDisplayed = (Interface.getInterface().getHeight() - (100*2))/40;
+        
+        //A box that the inventory will be drawn in.
+        content.add(new IOShape(new Rectangle(30, 100, Interface.getInterface().getWidth() - 60, 40*maxDisplayed), Color.WHITE));
         
         /*
          *(For each item in the list, attempt to add a Button and label for it.
@@ -97,13 +101,13 @@ public class LoadoutPanel extends IOPanel {
                 int idx = i - numInvalid;
                 
                 //Labels
-                IOTextLabel itemName = new IOTextLabel(item.NAME()       , 100, 90 + 40*idx, 16, Color.WHITE);
-                IOTextLabel itemDesc = new IOTextLabel(item.DESCRIPTION(), 100, 105 + 40*idx, 12, Color.WHITE);
-                IOShape box = new IOShape(new Rectangle(0, 80 + 40*idx, Interface.getInterface().getWidth(), 40));
+                IOTextLabel itemName = new IOTextLabel(item.NAME()       , 120, 110 + 40*idx, 16, Color.WHITE);
+                IOTextLabel itemDesc = new IOTextLabel(item.DESCRIPTION(), 120, 125 + 40*idx, 12, Color.WHITE);
+                IOShape box = new IOShape(new Rectangle(30, 100 + 40*idx, Interface.getInterface().getWidth() - 60, 40));
                 
                 //Buttons
-                IOButton drop =  new IOButton("ERROR[Inventory drop button not written yet.]" , "DROP", 10, 80 + 40*idx, 40, 40);
-                IOButton equip = new IOButton("ERROR[Inventory equip button not written yet.]", "EQUIP", 50, 80 + 40*idx, 40, 40);
+                IOButton drop =  new IOButton("PLAYER.DROP[" + i + "]" , "DROP", 30, 100 + 40*idx, 40, 40);
+                IOButton equip = new IOButton("PLAYER.EQUIP[" + i + "]", "EQUIP", 70, 100 + 40*idx, 40, 40);
                 
                 //Adds the contents required for this level.
                 content.add(box);
@@ -116,12 +120,18 @@ public class LoadoutPanel extends IOPanel {
             } else numInvalid++; // Otherwise, increase the number of skipped items because this one was skipped.
         }
         
-        
+        //Draws only if the player's inventory is empty. Basically, it tells the
+        //player that his/her Inventory is empty.
+        if(itemsSkipped == inv.size()) {
+            content.add(new IOTextLabel("Empty", 40, 120, 16, Color.WHITE));
+        }
         
         return content;
         
     }
-
+    
+    
+    
     @Override
     public void clickOperation(int x, int y) {
         

@@ -5,6 +5,7 @@
  */
 package io.content;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
@@ -18,6 +19,7 @@ import java.awt.Shape;
 public class IOShape extends IOContent {
     
     private Shape shape;
+    private Color color = Color.BLACK;
     
     /**
      * Creates the IOShape.
@@ -28,6 +30,11 @@ public class IOShape extends IOContent {
         shape = s;
     }
     
+    public IOShape(Shape s, Color c) {
+        this(s);
+        color = c;
+    }
+    
     @Override
     public boolean contains(int x, int y) {
         return shape.contains(x, y);
@@ -35,7 +42,10 @@ public class IOShape extends IOContent {
 
     @Override
     public void draw(Graphics g) {
+        Color old = g.getColor();
+        g.setColor(color);
         ((Graphics2D) g).draw(shape);
+        g.setColor(old);
     }
 
     @Override
