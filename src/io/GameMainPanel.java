@@ -1,17 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * GameMainPlayer.java
+ * 
+ * Christopher Hittner (c) 2015
  */
 package io;
 
+import io.content.IOButton;
 import io.content.IOContent;
 import java.awt.Color;
 import java.util.ArrayList;
 
 /**
+ * This Panel is used as the primary menu used by the player.
  *
- * @author Christopher
+ * @author Christopher Hittner
  */
 public class GameMainPanel extends IOPanel {
 
@@ -24,7 +26,7 @@ public class GameMainPanel extends IOPanel {
         //Content Panel
         ContentPanel ctrl = new ContentPanel("MAIN_CTRL");
         ArrayList<IOContent> controls = generateControls();
-        for(IOContent ioc : controls)
+        for (IOContent ioc : controls)
             ctrl.addContent(ioc);
         
         //Adds all of the Panels.
@@ -37,9 +39,18 @@ public class GameMainPanel extends IOPanel {
     public void clickOperation(int x, int y) { }
 
     private ArrayList<IOContent> generateControls() {
+        //The componenta
         ArrayList<IOContent> controls = new ArrayList<>();
         
+        //The definitions used for all of the buttons. Each one consists of s script and label.
+        String[][] buttonDefs = {
+            {"IO_MANAGER.SET_DISPLAY[inventory]", "Access Inventory"},
+            {"PLAYER.SEARCH[]", "Search"}
+        };
         
+        //Puts all of the buttons into the list in order.
+        for(int i = 0; i < buttonDefs.length; i++) {
+        }
         
         return controls;
     }

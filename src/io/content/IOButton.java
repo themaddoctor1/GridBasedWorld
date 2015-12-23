@@ -47,10 +47,10 @@ public class IOButton extends IOContent {
         Color old = g.getColor();
         
         //Draws the button.
-        g.setColor(border);
-        g.drawRect(X, Y, W, H);
         g.setColor(fill);
         g.fillRect(X, Y, W, H);
+        g.setColor(border);
+        g.drawRect(X, Y, W, H);
         
         //Set to the text color.
         g.setColor(text);
