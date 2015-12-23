@@ -64,4 +64,6 @@ public abstract class Creature extends Entity {
        this.setCell(loc);
     }
     
+    public Loadout getLoadout() { return inventory; }
+    
 }

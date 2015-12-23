@@ -5,6 +5,7 @@
  */
 package io;
 
+import entities.Player;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Arrays;
@@ -93,7 +94,15 @@ public class IOManager {
                                 
                             //Inventory panel
                             case "inventory":
-                                throw new UnsupportedOperationException("The 'inventory' panel type for IO_MANAGER.SET_DISPLAY is not fully implemented.");
+                                //Determines how many items to skip over.
+                                int invItemsSkipped = 0;
+                                try {
+                                    invItemsSkipped = Integer.parseInt(params[1]);
+                                } catch(Exception e) {}
+                                
+                                //Sets the new Panel.
+                                topPanel = new LoadoutPanel(Player.getPlayer().getLoadout(), invItemsSkipped);
+                                break;
                             default:
                                 throw new IllegalArgumentException("'" + params[0] + "' was not recognized as a display type.");
                         }

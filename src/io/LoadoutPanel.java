@@ -12,6 +12,7 @@ import io.content.IOTextLabel;
 import items.Inventory;
 import items.Item;
 import items.Loadout;
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
@@ -20,17 +21,17 @@ import java.util.ArrayList;
  *
  * @author Christopher Hittner
  */
-public class LoadoutPanel  extends IOPanel {
+public class LoadoutPanel extends IOPanel {
 
-    public LoadoutPanel(Loadout load) {
+    public LoadoutPanel(Loadout load, int skipped) {
         super("INV");
         
         //Provides a background.
-        BlankPanel background = new BlankPanel("BKGRND");
+        BlankPanel background = new BlankPanel("BKGRND", Color.BLACK);
         
         //Creates and adds buttons
         ContentPanel inventory = new ContentPanel("INV_DISP");
-        ArrayList<IOContent> invContent = generateContent(load, 0);
+        ArrayList<IOContent> invContent = generateContent(load, skipped);
         for(IOContent c : invContent)
             inventory.addContent(c);
         
@@ -38,6 +39,7 @@ public class LoadoutPanel  extends IOPanel {
         this.sendToTop(background);
         this.sendToTop(inventory);
     }
+    
     
     /**
      * Creates the items for the interactive layer of the InventoryPanel
@@ -47,8 +49,16 @@ public class LoadoutPanel  extends IOPanel {
      */
     private static ArrayList<IOContent> generateContent(Loadout load, int itemsSkipped) {
         
+        //Null check.
+        if(load == null)
+            return new ArrayList<>();
+        
         //Grabs to inside Inventory.
         Inventory inv = load.getInventory();
+        
+        //Another null check.
+        if(inv == null)
+            return new ArrayList<>();
         
         //Holds the list of buttons.
         ArrayList<IOContent> content = new ArrayList<>();
@@ -76,10 +86,12 @@ public class LoadoutPanel  extends IOPanel {
          *cease adding them.
         */
         for(int i = itemsSkipped; i < inv.size() && maxDisplayed < i-numInvalid; i++) {
+            //Grabs the Item.
             Item item = inv.get(i);
             
             //If there is an item, take care of it.
             if(item != null) {
+                //Calculates the index of the visual list to draw.
                 int idx = i - numInvalid;
                 
                 //Labels
@@ -91,7 +103,7 @@ public class LoadoutPanel  extends IOPanel {
                 Button drop =  new Button("ERROR[Inventory drop button not written yet.]" , "DROP", 10, 80 + 40*idx, 40, 40);
                 Button equip = new Button("ERROR[Inventory equip button not written yet.]", "EQUIP", 50, 80 + 40*idx, 40, 40);
                 
-                //Adds the Items.
+                //Adds the contents required for this level.
                 content.add(box);
                 content.add(itemName);
                 content.add(itemDesc);
