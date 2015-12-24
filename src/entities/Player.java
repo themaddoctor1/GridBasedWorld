@@ -19,7 +19,7 @@ public final class Player extends Creature {
     private Player(MapLocation loc) {
         super(loc);
     }
-
+    
     @Override
     public void passTime(double t) { }
     
@@ -28,7 +28,7 @@ public final class Player extends Creature {
      * @return The player.
      */
     public static Player getPlayer() {
-        //Gets the player, if one has been created.
+        //Gets the player, if one has been created. Otherwise, create a new one and return it.
         return (player == null)
                 ? initPlayer()
                 : player;

@@ -14,7 +14,7 @@ import map.MapLocation;
  * @author Christopher Hittner
  */
 public class NPC extends Creature {
-
+    
     public NPC(MapLocation loc) {
         super(loc);
     }
