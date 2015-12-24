@@ -53,6 +53,18 @@ public class GameMainPanel extends IOPanel {
             controls.add(new IOButton(buttonDefs[i][0], buttonDefs[i][1], 30, 40* (2+i), 240, 30));
         }
         
+        int guiHeight = Interface.getInterface().getHeight();
+        
+        //Directional movement buttons - horizontal
+        controls.add(new IOButton("PLAYER.MOVE[1|0|0]", "EAST", 210, guiHeight - (210), 80, 60));
+        controls.add(new IOButton("PLAYER.MOVE[0|1|0]", "NORTH", 120, guiHeight - (260), 80, 40));
+        controls.add(new IOButton("PLAYER.MOVE[-1|0|0]", "WEST", 30, guiHeight - (210), 80, 60));
+        controls.add(new IOButton("PLAYER.MOVE[0|-1|0]", "SOUTH", 120, guiHeight - (140), 80, 40));
+        
+        //Directional movement button - vertical
+        controls.add(new IOButton("PLAYER.MOVE[0|0|1]", "UP", 120, guiHeight - (210), 80, 25));
+        controls.add(new IOButton("PLAYER.MOVE[0|0|-1]", "DOWN", 120, guiHeight - (175), 80, 25));
+        
         return controls;
     }
     

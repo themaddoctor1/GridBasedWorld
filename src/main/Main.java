@@ -20,10 +20,11 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        Interface.initialize("Title");
+        
         IOPanel panel = new GameMainPanel("GAME_MAIN");
         IOManager.setIOPanel(panel);
         
-        Interface.initialize("Title");
         
         while(true) {
             Interface.getInterface().redraw();
