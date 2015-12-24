@@ -9,7 +9,6 @@ import io.IOManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import map.EntityList;
-import map.MapLocation;
 import map.MapManager;
 
 /**
@@ -17,7 +16,7 @@ import map.MapManager;
  * @author Christopher
  */
 public class PlayerBrain extends CreatureBrain {
-
+    
     @Override
     public void act(HashMap<String, Object> params) {
         //Gets the full command
