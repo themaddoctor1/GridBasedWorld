@@ -45,7 +45,8 @@ public class GameMainPanel extends IOPanel {
         //The definitions used for all of the buttons. Each one consists of s script and label.
         String[][] buttonDefs = {
             {"IO_MANAGER.SET_DISPLAY[inventory]", "Access Inventory"},
-            {"PLAYER.SEARCH[]", "Search"}
+            {"PLAYER.SEARCH[]", "Search"},
+            {"PLAYER.ATTACK[]","Attack"}
         };
         
         //Puts all of the buttons into the list in order.

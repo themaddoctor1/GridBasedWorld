@@ -6,6 +6,7 @@
 package entities;
 
 import io.IOManager;
+import java.util.ArrayList;
 import java.util.HashMap;
 import map.EntityList;
 import map.MapLocation;
@@ -29,10 +30,42 @@ public class PlayerBrain extends CreatureBrain {
             String[] parameters = IOManager.parseCommandParameters(command);
             switch(function) {
                 case "ATTACK":
-                    //Pulls the target's ID out of the String.
-                    long targetID = Long.parseLong(parameters[0]);
-                    //Attacks
-                    attack((Creature) MapManager.getEntitiyList().get(targetID));
+                    //Pulls the target's ID out of the String. If none exists,
+                    //attack the closest thing to the player. If nothing is nearby,
+                    //do nothing.
+                    try {
+                        long targetID = Long.parseLong(parameters[0]);
+                        //Attacks
+                        attack((Creature) MapManager.getEntitiyList().get(targetID));
+                    } catch(Exception ex) {
+                        //Holds all of the possible targets.
+                        ArrayList<ZombieHorde> possibleTargets = new ArrayList<>();
+                        
+                        //Sorts through every Entity
+                        EntityList allEntities = MapManager.getEntitiyList();
+                        for(int i = 0; i < allEntities.size(); i++)
+                            //If it is a zombie, make it a potential target.
+                            if (allEntities.get(i) instanceof ZombieHorde)
+                                possibleTargets.add((ZombieHorde) allEntities.get(i));
+                        
+                        //If there are no targets, cancel the attack.
+                        if(possibleTargets.isEmpty())
+                            break;
+                        
+                        ZombieHorde closest = possibleTargets.get(0);
+                        
+                        //Tests each of the potential targets. In each iteration,
+                        //the closer of the two ZombieHordes will be referenced by
+                        //closest.
+                        for(int i = 1; i < possibleTargets.size(); i++)
+                            if (closest==null || ((ZombieBrain) closest.getBrain()).timeToTarget() > ((ZombieBrain) possibleTargets.get(i).getBrain()).timeToTarget())
+                                closest = possibleTargets.get(i);
+                        
+                        //Attacks the result
+                        attack(closest);
+                        
+                    }
+                    
                     break;
                 case "MOVE":
                     //Gets each of the three coords.
