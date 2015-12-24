@@ -5,8 +5,10 @@
  */
 package io;
 
+import entities.Player;
 import io.content.IOButton;
 import io.content.IOContent;
+import io.content.IOImage;
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -65,6 +67,9 @@ public class GameMainPanel extends IOPanel {
         //Directional movement button - vertical
         controls.add(new IOButton("PLAYER.MOVE[0|0|1]", "UP", 120, guiHeight - (210), 80, 25));
         controls.add(new IOButton("PLAYER.MOVE[0|0|-1]", "DOWN", 120, guiHeight - (175), 80, 25));
+        
+        //Adds the image representing the player's current location, if possible.
+        try {controls.add(new IOImage(Player.getPlayer().getLocation().getPicture(), 630, 30)); } catch(Exception ex) { }
         
         return controls;
     }

@@ -5,6 +5,7 @@
  */
 package map.templates;
 
+import java.awt.Image;
 import map.MapLocation;
 
 /**
@@ -51,7 +52,12 @@ public class StreetCell extends MapLocation {
 
     @Override
     public String getDescription(int quality) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("map.templates.StreetCell.getDescription() has not been written yet.");
+    }
+
+    @Override
+    public Image getPicture() {
+        throw new UnsupportedOperationException("map.templates.StreetCell.getPicture() has not been written yet.");
     }
     
 }

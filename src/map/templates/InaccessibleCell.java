@@ -5,6 +5,7 @@
  */
 package map.templates;
 
+import java.awt.Image;
 import map.MapLocation;
 
 /**
@@ -29,6 +30,11 @@ public final class InaccessibleCell extends MapLocation {
     @Override
     public String getDescription(int quality) {
         return "There is nothing but darkness.";
+    }
+
+    @Override
+    public Image getPicture() {
+        return null;
     }
     
 }

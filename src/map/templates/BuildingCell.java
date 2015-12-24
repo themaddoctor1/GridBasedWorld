@@ -5,6 +5,7 @@
  */
 package map.templates;
 
+import java.awt.Image;
 import map.MapLocation;
 
 /**
@@ -13,7 +14,7 @@ import map.MapLocation;
  * @author Christopher Hittner
  */
 public class BuildingCell extends MapLocation {
-
+    
     /**
      * BuildingCellType is used to simplify identification of building types.
      */
@@ -83,7 +84,13 @@ public class BuildingCell extends MapLocation {
     
     @Override
     public String getDescription(int quality) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("map.templates.BuildingCell.getDescription() has not been written yet.");
+    }
+    
+    
+    @Override
+    public Image getPicture() {
+        throw new UnsupportedOperationException("map.templates.BuildingCell.getPicture() has not been written yet.");
     }
     
 }

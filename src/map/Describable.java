@@ -5,6 +5,8 @@
  */
 package map;
 
+import java.awt.Image;
+
 /**
  * Allows an Object to be described.
  * 
@@ -19,4 +21,11 @@ public interface Describable {
      * @return A description of the item.
      */
     public String getDescription(int quality);
+    
+    /**
+     * Provides a picture of the item to be described.
+     * @return A picture of the item.
+     */
+    public Image getPicture();
+    
 }
